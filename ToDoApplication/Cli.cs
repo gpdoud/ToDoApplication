@@ -15,7 +15,7 @@ namespace ToDoApplication {
             if(response.Length == 0) {
                 return false;
             }
-            return Convert.ToBoolean(response);
+            return "|y|Y|yes|Yes|YES|1|t|T|true|True|TRUE".Contains($"|{response}|") ? true : false;
         }
         public static DateTime? GetDateTime(string prompt) {
             var response = GetString(prompt);

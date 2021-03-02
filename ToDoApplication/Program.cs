@@ -58,9 +58,20 @@ namespace ToDoApplication {
             var todo1 = await todoCtrl.GetByPK(id);
             var chgDescription = Cli.GetBoolean("Change description?");
             if(chgDescription) {
-                //Cli.DisplayLine($"Description value is {todo1.descr}");
-                todo1.Description = Cli.GetString($"");
+                Cli.DisplayLine($"Description - old value: {todo1.Description}");
+                todo1.Description = Cli.GetString($"Description - new value:");
             }
+            var chgDue = Cli.GetBoolean("Change due date?");
+            if(chgDue) {
+                Cli.DisplayLine($"Due date - old value: {todo1.Due}");
+                todo1.Due = Cli.GetDateTime($"Due date - new value:");
+            }
+            var chgNote = Cli.GetBoolean("Change Note?");
+            if(chgNote) {
+                Cli.DisplayLine($"Note - old value: {todo1.Note}");
+                todo1.Note = Cli.GetString($"Note - new value:");
+            }
+            await todoCtrl.Change(todo1);
         }
         async Task Run() {
             todoCtrl = new TodosController();
